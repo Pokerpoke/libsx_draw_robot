@@ -3,7 +3,7 @@ project(robot)
 cmake_minimum_required(VERSION 2.6)
 
 #######################################################
-# include directories
+# Include directories
 #######################################################
 include_directories(
     ${CMAKE_SOURCE_DIR}/lib
@@ -14,7 +14,7 @@ include_directories(
 
 
 #######################################################
-# sbdirectory
+# Sub directories
 #######################################################
 add_subdirectory(app)
 add_subdirectory(lib)
