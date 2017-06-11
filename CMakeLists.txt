@@ -3,6 +3,13 @@ project(robot)
 cmake_minimum_required(VERSION 2.6)
 
 #######################################################
+# Find libraries
+#######################################################
+
+find_library(LIBSX_LIB sx)
+find_library(MATH_LIB m)
+
+#######################################################
 # Include directories
 #######################################################
 include_directories(
@@ -18,3 +25,4 @@ include_directories(
 #######################################################
 add_subdirectory(app)
 add_subdirectory(lib)
+
