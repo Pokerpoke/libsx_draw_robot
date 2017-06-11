@@ -9,7 +9,7 @@ int main(int argc, char **argv)
 	Robot_position pos;
 
 	init_position(&pos);
-	pos.degree = 45;
+	pos.degree = 0;
 	pos.n = 10;
 
 	argc = OpenDisplay(argc, argv);
@@ -33,21 +33,21 @@ int main(int argc, char **argv)
 	SetWidgetPos(blank[1], PLACE_RIGHT, w[0], NO_CARE, NULL);
 
 	//左转
-	w[1] = MakeButton("GAUCHE", NULL, NULL);
+	w[1] = MakeButton("GAUCHE", robot_turn_left, &pos);
 	SetWidgetPos(w[1], PLACE_UNDER, blank[0], NO_CARE, NULL);
 
 	blank[2] = MakeLabel("      ");
 	SetWidgetPos(blank[2], PLACE_RIGHT, w[1], PLACE_UNDER, w[0]);
 
 	//右转
-	w[2] = MakeButton("DROITE", NULL, NULL);
+	w[2] = MakeButton("DROITE", robot_turn_right, &pos);
 	SetWidgetPos(w[2], PLACE_RIGHT, blank[2], PLACE_UNDER, blank[1]);
 
 	blank[3] = MakeLabel("      ");
 	SetWidgetPos(blank[3], PLACE_UNDER, w[1], NO_CARE, NULL);
 
 	//后退
-	w[3] = MakeButton("RECULE", NULL, NULL);
+	w[3] = MakeButton("RECULE", robot_backward, &pos);
 	SetWidgetPos(w[3], PLACE_RIGHT, blank[3], PLACE_UNDER, blank[2]);
 
 	//提笔
@@ -66,7 +66,7 @@ int main(int argc, char **argv)
 	SetWidgetPos(w[6], PLACE_UNDER, w[5], NO_CARE, NULL);
 
 	//复位
-	w[7] = MakeButton("NETTOIE", NULL, NULL);
+	w[7] = MakeButton("NETTOIE", robot_reset, &pos);
 	SetWidgetPos(w[7], PLACE_UNDER, w[6], NO_CARE, NULL);
 
 	blank[5] = MakeLabel("     ");
