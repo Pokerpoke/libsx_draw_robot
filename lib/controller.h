@@ -3,6 +3,6 @@
 
 void quit(Widget w, void *data);
 void draw_stuff(Widget w, int width, int height, void *data);
-void robot_forward(Widget w, Robot_position pos, short distance, void *data);
+void robot_forward(Widget w, void *data);
 
 #endif

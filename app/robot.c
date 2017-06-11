@@ -7,7 +7,10 @@ int main(int argc, char **argv)
 	Widget convas_form, controller_form;
 
 	Robot_position pos;
-	init_position(pos);
+
+	init_position(&pos);
+	pos.degree = 45;
+	pos.n = 10;
 
 	argc = OpenDisplay(argc, argv);
 	if (argc == 0) /* woops, couldn't get started */
@@ -15,8 +18,7 @@ int main(int argc, char **argv)
 
 	convas_form = MakeForm(TOP_LEVEL_FORM);
 	//画布
-	// SetDrawArea(convas);
-	MakeDrawArea(300, 300, NULL, NULL);
+	MakeDrawArea(500, 500, NULL, NULL);
 
 	controller_form = MakeForm(TOP_LEVEL_FORM);
 	SetWidgetPos(controller_form, PLACE_RIGHT, convas_form, NO_CARE, NULL);
@@ -24,7 +26,7 @@ int main(int argc, char **argv)
 	blank[0] = MakeLabel("      ");
 
 	//前进
-	w[0] = MakeButton("AVANCE", robot_forward, NULL);
+	w[0] = MakeButton("AVANCE", robot_forward, &pos);
 	SetWidgetPos(w[0], PLACE_RIGHT, blank[0], NO_CARE, NULL);
 
 	blank[1] = MakeLabel("      ");
