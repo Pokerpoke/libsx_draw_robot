@@ -3,8 +3,11 @@
 int main(int argc, char **argv)
 {
 	Widget w[8];
-	Widget color_black, color_white, color_green, color_red, color_blue, color_yellow;
 	Widget convas, blank[5];
+	Widget controller_forward, controller_turn_left, controller_turn_right, controller_backward, controller_draw, controller_reset, controller_quit;
+	// 颜色控件
+	Widget color_black, color_white, color_green, color_red, color_blue, color_yellow;
+	// 总体布局
 	Widget convas_form, controller_form, color_form;
 
 	Robot_status status;
@@ -25,45 +28,41 @@ int main(int argc, char **argv)
 	controller_form = MakeForm(TOP_LEVEL_FORM);
 	SetWidgetPos(controller_form, PLACE_RIGHT, convas_form, NO_CARE, NULL);
 	// 控制按钮
-	blank[0] = MakeLabel("      ");
+	blank[0] = MakeLabel("        ");
 	// 前进
-	w[0] = MakeButton("AVANCE", robot_forward, &status);
+	controller_forward = MakeButton("FORWARD", robot_forward, &status);
 	blank[1] = MakeLabel("      ");
 	// 左转
-	w[1] = MakeButton("GAUCHE", robot_turn_left, &status);
+	controller_turn_left = MakeButton("TURN LEFT", robot_turn_left, &status);
 	blank[2] = MakeLabel("      ");
 	// 右转
-	w[2] = MakeButton("DROITE", robot_turn_right, &status);
-	blank[3] = MakeLabel("      ");
+	controller_turn_right = MakeButton("TURN RIGHT", robot_turn_right, &status);
+	blank[3] = MakeLabel("       ");
 	// 后退
-	w[3] = MakeButton("RECULE", robot_backward, &status);
-	// 提笔
-	w[4] = MakeButton("LEVE_CRAYON", NULL, NULL);
+	controller_backward = MakeButton("BACKWARD", robot_backward, &status);
+	// 提笔,落笔
+	controller_draw = MakeToggle("DRAW", TRUE, NULL, robot_draw, &status);
 	blank[4] = MakeLabel("     ");
-	// 落笔
-	w[5] = MakeButton("BAISSE_CRAYON", NULL, NULL);
-	// 设置颜色
-	w[6] = MakeButton("COULEUR", NULL, NULL);
 	// 复位
-	w[7] = MakeButton("NETTOIE", robot_reset, &status);
+	controller_reset = MakeButton("RESET", robot_reset, &status);
 	blank[5] = MakeLabel("     ");
 	// 退出
-	w[8] = MakeButton("QUIT", quit, NULL);
+	controller_quit = MakeButton("QUIT", quit, NULL);
 
-	SetWidgetPos(w[0], PLACE_RIGHT, blank[0], NO_CARE, NULL);
-	SetWidgetPos(blank[1], PLACE_RIGHT, w[0], NO_CARE, NULL);
-	SetWidgetPos(w[1], PLACE_UNDER, blank[0], NO_CARE, NULL);
-	SetWidgetPos(blank[2], PLACE_RIGHT, w[1], PLACE_UNDER, w[0]);
-	SetWidgetPos(w[2], PLACE_RIGHT, blank[2], PLACE_UNDER, blank[1]);
-	SetWidgetPos(blank[3], PLACE_UNDER, w[1], NO_CARE, NULL);
-	SetWidgetPos(w[3], PLACE_RIGHT, blank[3], PLACE_UNDER, blank[2]);
-	SetWidgetPos(w[4], PLACE_UNDER, blank[3], NO_CARE, NULL);
-	SetWidgetPos(blank[4], PLACE_RIGHT, w[3], PLACE_UNDER, w[2]);
-	SetWidgetPos(w[5], PLACE_RIGHT, w[4], PLACE_UNDER, blank[4]);
-	SetWidgetPos(w[6], PLACE_UNDER, w[5], NO_CARE, NULL);
-	SetWidgetPos(w[7], PLACE_UNDER, w[6], NO_CARE, NULL);
-	SetWidgetPos(blank[5], PLACE_RIGHT, w[7], PLACE_UNDER, w[5]);
-	SetWidgetPos(w[8], PLACE_RIGHT, w[7], PLACE_UNDER, blank[5]);
+	SetWidgetPos(controller_forward, PLACE_RIGHT, blank[0], NO_CARE, NULL);
+	SetWidgetPos(blank[1], PLACE_RIGHT, controller_forward, NO_CARE, NULL);
+	SetWidgetPos(controller_turn_left, PLACE_UNDER, blank[0], NO_CARE, NULL);
+	SetWidgetPos(blank[2], PLACE_RIGHT, controller_turn_left, PLACE_UNDER, controller_forward);
+	SetWidgetPos(controller_turn_right, PLACE_RIGHT, blank[2], PLACE_UNDER, blank[1]);
+	SetWidgetPos(blank[3], PLACE_UNDER, controller_turn_left, NO_CARE, NULL);
+	SetWidgetPos(controller_backward, PLACE_RIGHT, blank[3], PLACE_UNDER, blank[2]);
+	SetWidgetPos(blank[4], PLACE_RIGHT, controller_backward, PLACE_UNDER, controller_turn_right);
+	SetWidgetPos(controller_draw, PLACE_UNDER, blank[3], NO_CARE, NULL);
+	SetWidgetPos(blank[5], PLACE_RIGHT, controller_draw, PLACE_UNDER, controller_backward);
+	SetWidgetPos(controller_reset, PLACE_UNDER, controller_draw, NO_CARE, NULL);
+	SetWidgetPos(controller_quit, PLACE_RIGHT, controller_reset, PLACE_UNDER, blank[5]);
+	// SetWidgetPos(blank[5], PLACE_RIGHT, w[7], PLACE_UNDER, w[5]);
+	// SetWidgetPos(w[8], PLACE_RIGHT, w[7], PLACE_UNDER, blank[5]);
 
 	color_form = MakeForm(TOP_LEVEL_FORM);
 	SetWidgetPos(color_form, PLACE_RIGHT, convas_form, PLACE_UNDER, controller_form);

@@ -13,6 +13,8 @@ void init_status(Widget w, void *data)
 	status->y = 0;
 	status->degree = 0;
 	status->n = 10;
+
+	status->draw = true;
 }
 
 int update_status(Robot_status *status)
@@ -33,7 +35,7 @@ int update_status(Robot_status *status)
 	return 0;
 }
 
-Robot_status calc_statusition(Robot_status *status)
+Robot_status calc_position(Robot_status *status)
 {
 	Robot_status status2;
 
