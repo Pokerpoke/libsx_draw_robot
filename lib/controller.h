@@ -1,7 +1,7 @@
 #ifndef _CONTROLLER_H_
 #define _CONTROLLER_H_
 
-void quit(Widget w, void *data);
+void robot_quit(Widget w, void *data);
 void robot_forward(Widget w, void *data);
 void robot_backward(Widget w, void *data);
 void robot_turn_right(Widget w, void *data);

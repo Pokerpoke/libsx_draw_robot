@@ -9,15 +9,14 @@ typedef enum {
 typedef struct
 {
 	Widget widget;
-	short x;
-	short y;
-	short n;
+	int x;
+	int y;
+	int n;
 	int degree;
 	int color;
 	bool draw;
 
 	int temp_int;
-	short temp_short;
 } Robot_status;
 
 void init_status(Widget w, void *data);

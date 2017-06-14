@@ -2,13 +2,13 @@
 
 int main(int argc, char **argv)
 {
-	Widget w[8];
-	Widget convas, blank[5];
+	Widget convas, file, blank[5];
+	// 控制控件
 	Widget controller_forward, controller_turn_left, controller_turn_right, controller_backward, controller_draw, controller_reset, controller_quit;
 	// 颜色控件
 	Widget color_black, color_white, color_green, color_red, color_blue, color_yellow;
 	// 总体布局
-	Widget convas_form, controller_form, color_form;
+	Widget convas_form, controller_form, color_form, file_form;
 
 	Robot_status status;
 
@@ -47,7 +47,7 @@ int main(int argc, char **argv)
 	controller_reset = MakeButton("RESET", robot_reset, &status);
 	blank[5] = MakeLabel("     ");
 	// 退出
-	controller_quit = MakeButton("QUIT", quit, NULL);
+	controller_quit = MakeButton("QUIT", robot_quit, NULL);
 
 	SetWidgetPos(controller_forward, PLACE_RIGHT, blank[0], NO_CARE, NULL);
 	SetWidgetPos(blank[1], PLACE_RIGHT, controller_forward, NO_CARE, NULL);
@@ -61,8 +61,6 @@ int main(int argc, char **argv)
 	SetWidgetPos(blank[5], PLACE_RIGHT, controller_draw, PLACE_UNDER, controller_backward);
 	SetWidgetPos(controller_reset, PLACE_UNDER, controller_draw, NO_CARE, NULL);
 	SetWidgetPos(controller_quit, PLACE_RIGHT, controller_reset, PLACE_UNDER, blank[5]);
-	// SetWidgetPos(blank[5], PLACE_RIGHT, w[7], PLACE_UNDER, w[5]);
-	// SetWidgetPos(w[8], PLACE_RIGHT, w[7], PLACE_UNDER, blank[5]);
 
 	color_form = MakeForm(TOP_LEVEL_FORM);
 	SetWidgetPos(color_form, PLACE_RIGHT, convas_form, PLACE_UNDER, controller_form);
@@ -79,6 +77,10 @@ int main(int argc, char **argv)
 	SetWidgetPos(color_red, PLACE_UNDER, color_green, NO_CARE, NULL);
 	SetWidgetPos(color_blue, PLACE_UNDER, color_red, NO_CARE, NULL);
 	SetWidgetPos(color_yellow, PLACE_UNDER, color_blue, NO_CARE, NULL);
+
+	file_form = MakeForm(TOP_LEVEL_FORM);
+	SetWidgetPos(file_form, PLACE_RIGHT, convas_form, PLACE_UNDER, color_form);
+	file = MakeButton("OPEN FILE", robot_file, &status);
 
 	ShowDisplay();
 	GetStandardColors();

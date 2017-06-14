@@ -4,3 +4,4 @@
 
 #include "status.h"
 #include "controller.h"
+#include "robot_file.h"

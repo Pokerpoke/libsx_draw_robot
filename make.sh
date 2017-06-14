@@ -1,9 +1,20 @@
 #! /bin/bash
 
-mkdir build
+if [ ! -d "./build" ]
+then
+	mkdir build
+	cd build
+	cmake ..
+	make
+else
+	cd build
+fi
 
-cd build
+if [ ! -f "./app/robot.lg" ]
+then
+	cp ../app/robot.lg ./app
+fi
 
-cmake ..
+cd ./app
 
-make
+./robot

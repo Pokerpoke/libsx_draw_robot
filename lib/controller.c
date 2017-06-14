@@ -7,7 +7,7 @@
 
 #include "controller.h"
 
-void quit(Widget w, void *data)
+void robot_quit(Widget w, void *data)
 {
 	exit(0);
 }
