@@ -1,23 +1,21 @@
 # 使用方法
 
-- 安装cmake
-先安装cmake
+- 执行以下命令
 ```shell
-sudo apt install cmake
-```
-- 使用cmake编译
-```shell
+git clone https://github.com/Pokerpoke/libsx_draw_robot.git
 mkdir build
 cd build
 cmake ..
 make
+cd app
+cp ../../app/robot.lg ./
+./robot
 ```
-或者直接运行
+- 直接执行
 ```shell
 ./make.sh
 ```
-# 运行程序
-程序的位置在`./build/app/robot`
-```shell
-cd ./build/app
-```
+
+# 说明
+
+生成的可执行文件为`build/app/robot`,界面中`file`指令所需的文件是`robot.lg`,可以更改此文件来绘制不同图形.
