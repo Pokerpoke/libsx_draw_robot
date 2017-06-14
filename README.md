@@ -3,6 +3,7 @@
 - 执行以下命令
 ```shell
 git clone https://github.com/Pokerpoke/libsx_draw_robot.git
+cd libsx_draw_robot
 mkdir build
 cd build
 cmake ..
