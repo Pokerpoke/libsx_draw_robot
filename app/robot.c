@@ -2,7 +2,7 @@
 
 int main(int argc, char **argv)
 {
-	Widget convas, file, blank[5];
+	Widget convas, file, blank[5], input_command, command;
 	// 控制控件
 	Widget controller_forward, controller_turn_left, controller_turn_right, controller_backward, controller_draw, controller_reset, controller_quit;
 	// 颜色控件
@@ -81,6 +81,11 @@ int main(int argc, char **argv)
 	file_form = MakeForm(TOP_LEVEL_FORM);
 	SetWidgetPos(file_form, PLACE_RIGHT, convas_form, PLACE_UNDER, color_form);
 	file = MakeButton("OPEN FILE", robot_file, &status);
+	command = MakeButton("COMMAND", NULL, NULL);
+	input_command = MakeStringEntry(NULL, 150, robot_command, &status);
+
+	SetWidgetPos(input_command, PLACE_UNDER, file, NO_CARE, NULL);
+	SetWidgetPos(command, PLACE_UNDER, input_command, NO_CARE, NULL);
 
 	ShowDisplay();
 	GetStandardColors();
