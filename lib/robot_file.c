@@ -133,7 +133,7 @@ void robot_file(Widget w, void *data)
 {
 	Robot_status *status = (Robot_status *)data;
 
-	char *path = "robot.lg";
+	char *path =GetFile("Input file",NULL,NULL,NULL);
 	char *cmd;
 	const char *param;
 	int i = 0;
@@ -155,6 +155,7 @@ void robot_file(Widget w, void *data)
 			robot_get_command(str, status);
 		}
 	}
+	update_label(status);
 	fclose(fp);
 }
 
@@ -163,5 +164,6 @@ void robot_command(Widget w, char *text, void *data)
 	Robot_status *status = (Robot_status *)data;
 
 	robot_get_command(text, status);
+	update_label(status);
 	SetStringEntry(w, "");
 }

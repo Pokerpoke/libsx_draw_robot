@@ -49,6 +49,7 @@ void robot_turn_right(Widget w, void *data)
 	Robot_status *status = (Robot_status *)data;
 
 	status->degree += 45;
+	update_label(status);
 }
 
 void robot_turn_left(Widget w, void *data)
@@ -56,6 +57,7 @@ void robot_turn_left(Widget w, void *data)
 	Robot_status *status = (Robot_status *)data;
 
 	status->degree -= 45;
+	update_label(status);
 }
 
 void robot_reset(Widget w, void *data)
@@ -65,6 +67,7 @@ void robot_reset(Widget w, void *data)
 	SetDrawArea(status->widget);
 	ClearDrawArea();
 	init_status(status->widget, status);
+	update_label(status);
 }
 
 void robot_draw(Widget w, void *data)
@@ -79,6 +82,7 @@ void robot_draw(Widget w, void *data)
 	{
 		status->draw = false;
 	}
+	update_label(status);
 }
 
 void robot_set_color_black(Widget w, void *data)
@@ -91,6 +95,7 @@ void robot_set_color_black(Widget w, void *data)
 		status->color = BLACK;
 		SetColor(status->color);
 	}
+	update_label(status);
 }
 void robot_set_color_white(Widget w, void *data)
 {
@@ -102,6 +107,7 @@ void robot_set_color_white(Widget w, void *data)
 		status->color = WHITE;
 		SetColor(status->color);
 	}
+	update_label(status);
 }
 void robot_set_color_green(Widget w, void *data)
 {
@@ -113,6 +119,7 @@ void robot_set_color_green(Widget w, void *data)
 		status->color = GREEN;
 		SetColor(status->color);
 	}
+	update_label(status);
 }
 void robot_set_color_red(Widget w, void *data)
 {
@@ -124,6 +131,7 @@ void robot_set_color_red(Widget w, void *data)
 		status->color = RED;
 		SetColor(status->color);
 	}
+	update_label(status);
 }
 void robot_set_color_blue(Widget w, void *data)
 {
@@ -135,6 +143,7 @@ void robot_set_color_blue(Widget w, void *data)
 		status->color = BLUE;
 		SetColor(status->color);
 	}
+	update_label(status);
 }
 void robot_set_color_yellow(Widget w, void *data)
 {
@@ -146,4 +155,5 @@ void robot_set_color_yellow(Widget w, void *data)
 		status->color = YELLOW;
 		SetColor(status->color);
 	}
+	update_label(status);
 }

@@ -2,7 +2,7 @@
 
 int main(int argc, char **argv)
 {
-	Widget convas, file, blank[5], input_command, command;
+	Widget convas, file, blank[5], input_command, command, show_status;
 	// 控制控件
 	Widget controller_forward, controller_turn_left, controller_turn_right, controller_backward, controller_draw, controller_reset, controller_quit;
 	// 颜色控件
@@ -62,6 +62,7 @@ int main(int argc, char **argv)
 	SetWidgetPos(controller_reset, PLACE_UNDER, controller_draw, NO_CARE, NULL);
 	SetWidgetPos(controller_quit, PLACE_RIGHT, controller_reset, PLACE_UNDER, blank[5]);
 
+	// 颜色
 	color_form = MakeForm(TOP_LEVEL_FORM);
 	SetWidgetPos(color_form, PLACE_RIGHT, convas_form, PLACE_UNDER, controller_form);
 	color_black = MakeToggle("BLACK", TRUE, NULL, robot_set_color_black, &status);
@@ -78,14 +79,19 @@ int main(int argc, char **argv)
 	SetWidgetPos(color_blue, PLACE_UNDER, color_red, NO_CARE, NULL);
 	SetWidgetPos(color_yellow, PLACE_UNDER, color_blue, NO_CARE, NULL);
 
+	// 文件和命令输入
 	file_form = MakeForm(TOP_LEVEL_FORM);
 	SetWidgetPos(file_form, PLACE_RIGHT, convas_form, PLACE_UNDER, color_form);
 	file = MakeButton("OPEN FILE", robot_file, &status);
-	command = MakeButton("COMMAND", NULL, NULL);
+	// command = MakeButton("COMMAND", NULL, NULL);
 	input_command = MakeStringEntry(NULL, 150, robot_command, &status);
+	status.has_label = true;
+	show_status = MakeLabel("position:(0,0)     \ndegree:0\nn:10\ncolor:black");
+	status.label = show_status;
 
 	SetWidgetPos(input_command, PLACE_UNDER, file, NO_CARE, NULL);
-	SetWidgetPos(command, PLACE_UNDER, input_command, NO_CARE, NULL);
+	// SetWidgetPos(command, PLACE_UNDER, input_command, NO_CARE, NULL);
+	SetWidgetPos(show_status, PLACE_UNDER, input_command, NO_CARE, NULL);
 
 	ShowDisplay();
 	GetStandardColors();
